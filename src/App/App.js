@@ -8,7 +8,6 @@ class App extends Component {
         return (
             <div className="App">
                 <div className="container">
-                    Text z glownego contenera
                     <Layout/>
                 </div>
             </div>
