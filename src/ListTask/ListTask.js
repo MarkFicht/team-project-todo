@@ -12,6 +12,17 @@ class ListTask extends React.Component {
         return (
             <div>
                 ListTask
+                <ul>
+                    {
+                      this.props.values && this.props.values.map(element => {
+                            return (
+                                <li key={element}>
+                                    {element}
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
             </div>
         );
     }

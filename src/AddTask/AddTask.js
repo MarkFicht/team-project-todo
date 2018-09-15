@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './AddTask.css';
+import ListTask from "../ListTask/ListTask";
 
 class AddTask extends React.Component {
 
@@ -32,18 +33,9 @@ class AddTask extends React.Component {
                     onChange={this.handleChange}
                     id="currentTask"
                 />
-                <ul>
-                    {
-                        this.state.tasks.map(element => {
-                            return (
-                                <li key={element}>
-                                    {element}
-                                </li>
-                            )
-                        })
-                    }
-                </ul>
+
                 {<button onClick={this.handleClick}>Dodaj</button>}
+                <ListTask values={this.state.tasks}/>
             </div>
         );
     }
