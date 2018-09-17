@@ -20,7 +20,6 @@ class Layout extends React.Component {
                 <p className='test'>Text z layout'u</p>
                 <Header />
                 <AddTask />
-                <ListTask />
                 <Archive />
                 <Footer />
             </div>
