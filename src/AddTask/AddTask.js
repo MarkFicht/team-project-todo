@@ -7,14 +7,27 @@ class AddTask extends React.Component {
     state = {
         tasks: [],
         currentTask: '',
-        validationTask: false
+        validationTask: false,
+        priorityTask: 1,
     };
 
-    handleChange = (e) =>{
+    handleChange = (e) => {
         this.setState({
             [e.target.id]: e.target.value,
             validationTask: e.target.value.length < 3 || e.target.value.length > 20 ? false : true,
         })
+    };
+
+    handleChangePrio = (e) => {
+        if (e.target.value > 5) {
+            this.setState({ [e.target.id]: 5 })
+        }
+        else if (e.target.value <= 1) {
+            this.setState({ [e.target.id]: 1 })
+        }
+        else {
+            this.setState({ [e.target.id]: e.target.value })
+        }
     };
 
     handleClick = () => {
@@ -31,12 +44,19 @@ class AddTask extends React.Component {
     render() {
         return (
             <div>
-                <div>AddTask</div>
+                <div>Add task</div>
                 <input
                     type="text"
                     value={this.state.currentTask}
                     onChange={this.handleChange}
                     id="currentTask"
+                />
+                <div>Set priority task</div>
+                <input
+                    type="number"
+                    value={this.state.priorityTask}
+                    onChange={this.handleChangePrio}
+                    id="priorityTask"
                 />
                 <br /> {/* ****Odstepy do usuniecia po dodaniu CSSow**** */}
                 {
