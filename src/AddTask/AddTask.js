@@ -4,23 +4,28 @@ import ListTask from "../ListTask/ListTask";
 
 class AddTask extends React.Component {
 
-
     state = {
         tasks: [],
-        currentTask: ''
+        currentTask: '',
+        validationTask: false
     };
-
 
     handleChange = (e) =>{
         this.setState({
-            [e.target.id]: e.target.value
+            [e.target.id]: e.target.value,
+            validationTask: e.target.value.length < 3 || e.target.value.length > 20 ? false : true,
         })
     };
 
     handleClick = () => {
-        this.setState(prevState => ({
-            tasks: [...prevState.tasks, this.state.currentTask]
-        }))
+        if (this.state.validationTask) {
+
+            this.setState(prevState => ({
+                tasks: [...prevState.tasks, this.state.currentTask],
+                currentTask: '',
+                validationTask: false
+            }))
+        }
     };
 
     render() {
@@ -33,8 +38,14 @@ class AddTask extends React.Component {
                     onChange={this.handleChange}
                     id="currentTask"
                 />
-
-                {<button onClick={this.handleClick}>Dodaj</button>}
+                <br /> {/* ****Odstepy do usuniecia po dodaniu CSSow**** */}
+                {
+                    this.state.validationTask ? 'Mozna dodac taska' : 'Musi zawierac od 3 do 20 znakow'
+                }
+                <br /> {/* ****Odstepy do usuniecia po dodaniu CSSow**** */}
+                {
+                    <button onClick={this.handleClick}>Dodaj</button>
+                }
                 <ListTask values={this.state.tasks}/>
             </div>
         );
