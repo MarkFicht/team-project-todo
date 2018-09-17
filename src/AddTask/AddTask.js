@@ -1,17 +1,41 @@
 import React, { Component } from 'react';
 import './AddTask.css';
+import ListTask from "../ListTask/ListTask";
 
 class AddTask extends React.Component {
 
-    constructor(props) {
-        super(props);
 
-    }
+    state = {
+        tasks: [],
+        currentTask: ''
+    };
+
+
+    handleChange = (e) =>{
+        this.setState({
+            [e.target.id]: e.target.value
+        })
+    };
+
+    handleClick = () => {
+        this.setState(prevState => ({
+            tasks: [...prevState.tasks, this.state.currentTask]
+        }))
+    };
 
     render() {
         return (
             <div>
-                AddTask
+                <div>AddTask</div>
+                <input
+                    type="text"
+                    value={this.state.currentTask}
+                    onChange={this.handleChange}
+                    id="currentTask"
+                />
+
+                {<button onClick={this.handleClick}>Dodaj</button>}
+                <ListTask values={this.state.tasks}/>
             </div>
         );
     }
