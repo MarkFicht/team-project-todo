@@ -18,18 +18,21 @@ class ListTask extends React.Component {
     }
 
     render() {
+
         return (
             <div>
                 ListTask
                 <ul>
-                    {
-                      this.props.values && this.props.values.map( (element, index) => {
-                            return (
-                                <li key={element}>
-                                    {element}
-                                    <button onClick={event => this.removeTask(index, event)}>Delete</button>
-                                </li>
-                            )
+                    {   this.props.values === 0
+                        ? null
+                        : this.props.values.map( (element, index) => {
+                                return (
+                                    <li key={element.name}>
+                                        { `${element.name} -> Priority: ${element.getPrio()}` }
+                                        <button onClick={event => this.removeTask(index, event)}>Delete</button>
+                                    </li>
+                                )
+
                         })
                     }
                 </ul>

@@ -2,6 +2,18 @@ import React, { Component } from 'react';
 import './AddTask.css';
 import ListTask from "../ListTask/ListTask";
 
+//---
+class Task {
+    constructor(name, prio) {
+        this.name = name;
+        this.prio = prio;
+    }
+    getPrio () {
+        return this.prio;
+    }
+}
+
+//---
 class AddTask extends React.Component {
 
     state = {
@@ -33,10 +45,14 @@ class AddTask extends React.Component {
     handleClick = () => {
         if (this.state.validationTask) {
 
-            this.setState(prevState => ({
-                tasks: [...prevState.tasks, this.state.currentTask],
+            let task = new Task(this.state.currentTask, this.state.priorityTask);
+
+            this.setState( prevState => ({
+                tasks: [...prevState.tasks, task],
+                // tasks: [...prevState.tasks, this.state.currentTask],
                 currentTask: '',
-                validationTask: false
+                validationTask: false,
+                priorityTask: 1
             }))
         }
     };
