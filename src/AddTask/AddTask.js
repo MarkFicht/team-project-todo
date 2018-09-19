@@ -46,9 +46,11 @@ class AddTask extends React.Component {
         if (this.state.validationTask) {
 
             let task = new Task(this.state.currentTask, this.state.priorityTask);
+            let sortTaskByPrio = [...this.state.tasks, task];
+            sortTaskByPrio.sort( (a, b) => { return b.getPrio() - a.getPrio() } );
 
             this.setState( prevState => ({
-                tasks: [...prevState.tasks, task],
+                tasks: sortTaskByPrio,
                 // tasks: [...prevState.tasks, this.state.currentTask],
                 currentTask: '',
                 validationTask: false,
