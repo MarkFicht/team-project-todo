@@ -3,6 +3,8 @@
 
 We will create a project in a team of four. Our application will be built into React.js
 
+[DEMO](https://markficht.github.io/team-project-todo/)
+
 ## Installation and configuration
 
 - instal Node.js -> [NodeJS](https://nodejs.org/en/)
