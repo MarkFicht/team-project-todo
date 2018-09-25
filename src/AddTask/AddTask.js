@@ -82,7 +82,7 @@ class AddTask extends React.Component {
                 }
                 <br /> {/* ****Odstepy do usuniecia po dodaniu CSSow**** */}
                 {
-                    <button onClick={this.handleClick}>Dodaj</button>
+                    <button onClick={this.handleClick}>Add to list</button>
                 }
                 <ListTask values={this.state.tasks}/>
             </div>
