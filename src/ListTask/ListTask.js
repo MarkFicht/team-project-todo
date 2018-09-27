@@ -6,9 +6,11 @@ class ListTask extends React.Component {
     state = {
         tasks: [],
         secondList: []
-    }
+    };
 
+    //delete item from the list
     removeTask = (event, index) => {
+
         const tasks = this.props.values;
         tasks.splice(index, 1);
 
@@ -17,7 +19,9 @@ class ListTask extends React.Component {
         })
     };
 
+    //delete item when in archive
     removeFromArchive = (event, index) => {
+
         const secondList = this.state.secondList;
         secondList.splice(index, 1);
 
@@ -26,6 +30,7 @@ class ListTask extends React.Component {
         })
     };
 
+    //delete from list and add to archive
     addToArchive = (event, item, index) => {
 
         const tasks = this.props.values;
@@ -37,7 +42,20 @@ class ListTask extends React.Component {
             tasks,
             secondList
         });
-    }
+    };
+
+    //delete from archive and add back to list
+    sendBackToList = (event, item) => {
+
+        const tasks = this.state.tasks;
+        tasks.push(item);
+
+        this.setState({
+            tasks,
+        });
+
+        this.removeFromArchive();
+    };
 
     render() {
         return (
@@ -63,6 +81,8 @@ class ListTask extends React.Component {
                             <li style={{color: 'grey', fontWeight: 'light'}} key={item.name}>
                                 { item.name }<span>{ ` Priority: ${item.getPrio()}` }</span>
                                 <button onClick={event => this.removeFromArchive( event, index)}>Delete</button>
+                                <button onClick={event => this.sendBackToList( event, item, index)}>Back to list</button>
+
                             </li>
                         )
                     })
